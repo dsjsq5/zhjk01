@@ -1,0 +1,53 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans     
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+	<context:component-scan base-package="com.test.controller" />
+	<!-- InternalResourceViewResolver-内部资源视图解析器 
+		ControllerClassNameHandlerMapping-控制器类名处理映射
+		SimpleUrlHandlerMapping-简单URL处理程序映射
+	-->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix">
+			<value>/WEB-INF/jsp/</value>
+		</property>
+		<property name="suffix">
+			<value>.jsp</value>
+		</property>
+	</bean>
+	
+	<!-- 用控制器类名称处理映射,BookAction不需要用@注解，需继承AbstractController类，实现protected ModelAndView handleRequestInternal(HttpServletRequestrequest, 
+HttpServletResponseresponse)throws Exception｛｝方法
+
+	<bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping"/>
+
+   <bean class="com.test.controller.BookAction" />
+   -->
+   <!--  用简单URL处理程序映射,BookAction不需要用@注解，需继承AbstractController类，实现protected ModelAndView handleRequestInternal(HttpServletRequestrequest, 
+HttpServletResponseresponse)throws Exception｛｝方法
+   <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+      <property name="mappings">
+         <props>
+            <prop key="/book_1.jsp">bookAction</prop>           
+         </props>
+      </property>
+   </bean>
+
+   <bean id="bookAction" class="com.test.controller.BookAction" />
+   -->
+   <!--  
+   可在applicationCintext.xml增加自动扫描，
+   <context:component-scanbase-package="com.test.controller"></context:component-scan>
+	-->
+    
+
+</beans>
+
+
+
